@@ -142,7 +142,7 @@
 
     .audio-notice {
       background: #ffffff;
-      padding: 20px;
+      padding: 15px;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(216, 27, 96, 0.15);
       border: 2px dashed #ffb7c5;
@@ -204,7 +204,10 @@
       font-weight: 700; border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+      transition: transform 0.2s ease;
     }
+
+    .btn-advance:hover { transform: scale(1.05); }
 
     /* SEÇÃO FINAL DE DECLARAÇÃO */
     #final-section {
@@ -254,41 +257,32 @@
 </head>
 <body>
 
-  <!-- MÚSICA DA CAPA (Jade LeMac - Constellations) -->
-  <audio id="bgMusicCover" loop>
-    <source src="https://ia801503.us.archive.org/15/items/jade-lemac-constellations/Jade%20LeMac%20-%20Constellations.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- CAPA -->
+  <!-- CAPA DO SITE -->
   <div id="cover-page">
     <h1 class="title-cover">SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
     
     <button class="marie-btn" onclick="openPasswordModal()">
-      <!-- Gatinha Marie Desenhada -->
+      <!-- Gatinha Marie Desenho -->
       <svg class="marie-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <circle cx="100" cy="110" r="65" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
         <path d="M 45 65 L 25 15 L 75 45 Z" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
         <polygon points="40,55 30,25 65,45" fill="#ffb7c5"/>
         <path d="M 155 65 L 175 15 L 125 45 Z" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
         <polygon points="160,55 170,25 135,45" fill="#ffb7c5"/>
-        <!-- Laço da Marie na Cabeça -->
         <ellipse cx="100" cy="35" rx="20" ry="12" fill="#ff4d6d"/>
         <ellipse cx="85" cy="35" rx="10" ry="8" fill="#ff758f"/>
         <ellipse cx="115" cy="35" rx="10" ry="8" fill="#ff758f"/>
         <circle cx="100" cy="35" r="5" fill="#ffffff"/>
-        <!-- Olhos Azuis da Marie -->
         <ellipse cx="75" cy="100" rx="9" ry="14" fill="#4a90e2"/>
         <circle cx="77" cy="96" r="4" fill="#ffffff"/>
         <ellipse cx="125" cy="100" rx="9" ry="14" fill="#4a90e2"/>
         <circle cx="127" cy="96" r="4" fill="#ffffff"/>
         <ellipse cx="100" cy="115" rx="6" ry="4" fill="#ff758f"/>
         <path d="M 90 122 Q 100 130 110 122" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"/>
-        <!-- Bigodes -->
         <line x1="45" y1="110" x2="15" y2="105" stroke="#666" stroke-width="2"/>
         <line x1="45" y1="118" x2="15" y2="120" stroke="#666" stroke-width="2"/>
         <line x1="155" y1="110" x2="185" y2="105" stroke="#666" stroke-width="2"/>
         <line x1="155" y1="118" x2="185" y2="120" stroke="#666" stroke-width="2"/>
-        <!-- Laço Rosa do Pescoço -->
         <ellipse cx="100" cy="165" rx="30" ry="18" fill="#ff4d6d"/>
       </svg>
     </button>
@@ -307,23 +301,22 @@
     </div>
   </div>
 
-  <!-- CONTEÚDO PRINCIPAL -->
+  <!-- CONTEÚDO PRINCIPAL (GALERIA) -->
   <div id="main-content">
     <div class="header-main">
       <h2>Para o Meu Grande Amor ❤️</h2>
       <div class="audio-notice">
-        <p>🎵 Amor escute essa musica antes de ler.</p>
-        <!-- MÚSICA 1: Ali Gatie - It's You -->
-        <audio controls id="music1">
-          <source src="https://ia801402.us.archive.org/24/items/ali-gatie-its-you/Ali%20Gatie%20-%20It%27s%20You.mp3" type="audio/mpeg">
+        <p>🎵 Tocando: Ali Gatie - It's You</p>
+        <!-- MÚSICA 1 DA GALERIA -->
+        <audio controls id="music1" loop preload="auto">
+          <source src="musica1.mp3" type="audio/mpeg">
         </audio>
       </div>
     </div>
 
-    <!-- GALERIA DE FOTOS COM AS SUAS IMAGENS -->
+    <!-- GALERIA DE FOTOS (1 A 7) -->
     <div class="gallery-container">
       
-      <!-- Foto 1 -->
       <div class="photo-card">
         <img src="foto1.jpg" alt="Foto 1" class="photo-img">
         <div class="photo-caption">
@@ -332,7 +325,6 @@
         </div>
       </div>
 
-      <!-- Foto 2 -->
       <div class="photo-card">
         <img src="foto2.jpg" alt="Foto 2" class="photo-img">
         <div class="photo-caption">
@@ -341,7 +333,6 @@
         </div>
       </div>
 
-      <!-- Foto 3 -->
       <div class="photo-card">
         <img src="foto3.jpg" alt="Foto 3" class="photo-img">
         <div class="photo-caption">
@@ -350,7 +341,6 @@
         </div>
       </div>
 
-      <!-- Foto 4 -->
       <div class="photo-card">
         <img src="foto4.jpg" alt="Foto 4" class="photo-img">
         <div class="photo-caption">
@@ -359,16 +349,14 @@
         </div>
       </div>
 
-      <!-- Foto 5 -->
       <div class="photo-card">
         <img src="foto5.jpg" alt="Foto 5" class="photo-img">
         <div class="photo-caption">
           <strong>Foto 5 (No jardim com vestido longo)</strong>
-          Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curvam diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecíveis ao seu lado. Você é a mulher que conquistou meu coração por inteiro.
+          Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curvam diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecibles ao seu lado. Você é a mulher que conquistou meu coração por inteiro.
         </div>
       </div>
 
-      <!-- Foto 6 -->
       <div class="photo-card">
         <img src="foto6.jpg" alt="Foto 6" class="photo-img">
         <div class="photo-caption">
@@ -377,7 +365,6 @@
         </div>
       </div>
 
-      <!-- Foto 7 -->
       <div class="photo-card">
         <img src="foto7.jpg" alt="Foto 7" class="photo-img">
         <div class="photo-caption">
@@ -388,22 +375,21 @@
 
     </div>
 
-    <!-- BOTÃO AVANÇAR -->
+    <!-- BOTÃO AVANÇAR PARA MUDAR DE MÚSICA E IR PRO FINAL -->
     <div class="nav-btn-container" id="advanceBtnContainer">
       <button class="btn-advance" onclick="showFinalSection()">Avançar ❤️</button>
     </div>
 
-    <!-- SEÇÃO FINAL CARTA DE AMOR -->
+    <!-- SEÇÃO FINAL (CARTA + FOTO 8 + MÚSICA 2) -->
     <div id="final-section">
       <div class="audio-notice">
-        <p>🎵 Aperte o play para ouvir enquanto lê esta carta especial:</p>
-        <!-- MÚSICA 2: Ruth B. - Dandelions -->
-        <audio controls id="music2">
-          <source src="https://ia801500.us.archive.org/16/items/ruth-b-dandelions/Ruth%20B.%20-%20Dandelions.mp3" type="audio/mpeg">
+        <p>🎵 Tocando: Ruth B. - Dandelions</p>
+        <!-- MÚSICA 2 DO FINAL -->
+        <audio controls id="music2" loop preload="auto">
+          <source src="musica2.mp3" type="audio/mpeg">
         </audio>
       </div>
 
-      <!-- Foto 8 -->
       <img src="foto8.jpg" alt="Foto Final" class="final-photo">
 
       <div class="final-text">
@@ -420,7 +406,6 @@
   </div>
 
   <script>
-    // Áudio Som de Miau
     function playMeow() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
@@ -443,9 +428,6 @@
 
     function openPasswordModal() {
       playMeow();
-      // Toca a música da capa assim que clica na Marie
-      const bgMusic = document.getElementById('bgMusicCover');
-      bgMusic.play().catch(() => {});
       document.getElementById('passwordModal').classList.add('active');
     }
 
@@ -455,12 +437,18 @@
 
       if (inputVal === '2026-03-16') {
         alert('Acertou em cheio amor! ❤️');
-        // Para música da capa e troca de tela
-        document.getElementById('bgMusicCover').pause();
+        
         document.getElementById('cover-page').style.display = 'none';
         document.getElementById('passwordModal').classList.remove('active');
         document.getElementById('main-content').style.display = 'block';
         document.body.style.backgroundColor = '#fbe3eb';
+        
+        // COMEÇA A MÚSICA 1 NAS FOTOS
+        const music1 = document.getElementById('music1');
+        if (music1) {
+          music1.play().catch(e => console.log('Erro de reprodução:', e));
+        }
+
         startHearts();
       } else {
         errorMsg.style.display = 'block';
@@ -471,8 +459,12 @@
       const finalSection = document.getElementById('final-section');
       const advanceContainer = document.getElementById('advanceBtnContainer');
       
-      // Pausa música 1 ao ir pra carta final
-      document.getElementById('music1').pause();
+      // PAUSA A MÚSICA 1 E TOCA A MÚSICA 2 NO FINAL
+      const music1 = document.getElementById('music1');
+      const music2 = document.getElementById('music2');
+
+      if (music1) music1.pause();
+      if (music2) music2.play().catch(e => console.log('Erro de reprodução:', e));
       
       finalSection.style.display = 'block';
       advanceContainer.style.display = 'none';
