@@ -1,498 +1,474 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOBRE O AMOR DA MINHA VIDA, AO MEU VER</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark-pink: #5c0f2b;
-      --pink-text-dark: #ffb7c5;
-      --bg-light-pink: #fbe3eb;
-      --card-bg: #ffffff;
-      --accent-pink: #d81b60;
-      --text-color: #4a2c35;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Amor da Minha Vida, Ao Meu Ver</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      overflow-x: hidden;
-      background-color: var(--bg-dark-pink);
-      color: var(--pink-text-dark);
-      transition: background-color 0.8s ease;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: #4a0e2e;
+            color: #ffb6c1;
+            transition: background-color 0.8s ease;
+        }
 
-    /* CAPA DO SITE */
-    #cover-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-    }
+        /* Corações Caindo */
+        .heart-particle {
+            position: fixed;
+            top: -10vh;
+            color: #ff69b4;
+            font-size: 1.2rem;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 999;
+        }
 
-    h1.title-cover {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.8rem;
-      margin-bottom: 30px;
-      color: #ffb7c5;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-    }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
 
-    .marie-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      transition: transform 0.3s ease;
-    }
+        /* Títulos */
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+        }
 
-    .marie-btn:hover { transform: scale(1.08); }
+        /* TELA 1 - CAPA */
+        #capa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #4a0e2e; /* Rosa bem escuro */
+            text-align: center;
+        }
 
-    .marie-img {
-      width: 220px;
-      height: 220px;
-      filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.5));
-    }
+        #capa h1 {
+            font-size: 2.5rem;
+            color: #ff99c8;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-    .subtitle-cover {
-      font-size: 1.2rem;
-      margin-top: 25px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #ffd1dc;
-    }
+        .gata-btn {
+            width: 180px;
+            height: 180px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0px 8px 15px rgba(255, 105, 180, 0.4));
+        }
 
-    /* MODAL DE SENHA */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.4s ease;
-      z-index: 100;
-    }
+        .gata-btn:hover {
+            transform: scale(1.1) rotate(-5deg);
+        }
 
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .instrucao {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ffc6ff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
 
-    .modal-card {
-      background: #fff;
-      padding: 30px 25px;
-      border-radius: 20px;
-      width: 90%; max-width: 380px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      color: var(--text-color);
-    }
+        /* MODAL DE SENHA */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    .modal-card h3 {
-      color: var(--accent-pink);
-      margin-bottom: 10px;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
-    }
+        .modal-content {
+            background: #2b081b;
+            border: 2px solid #ff69b4;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            box-shadow: 0 0 20px #ff69b4;
+        }
 
-    .hint-text { font-size: 0.95rem; margin-bottom: 20px; color: #666; }
+        .modal-content h3 {
+            color: #ff85a1;
+            margin-bottom: 10px;
+        }
 
-    .password-input {
-      width: 100%; padding: 12px;
-      border: 2px solid #ffccd5;
-      border-radius: 10px;
-      font-size: 1rem; text-align: center; outline: none;
-      margin-bottom: 15px;
-    }
+        .modal-content p {
+            font-size: 0.9rem;
+            color: #ffc6ff;
+            margin-bottom: 15px;
+        }
 
-    .btn-submit {
-      background: var(--accent-pink);
-      color: white; border: none;
-      padding: 12px 25px; border-radius: 25px;
-      font-weight: 700; font-size: 1rem; cursor: pointer;
-      width: 100%;
-    }
+        .modal-content input[type="date"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ff69b4;
+            outline: none;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
 
-    .error-msg { color: #e53935; font-size: 0.85rem; margin-top: 10px; display: none; }
+        .btn-senha {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    /* CONTEÚDO PRINCIPAL DO SITE */
-    #main-content {
-      display: none;
-      background-color: var(--bg-light-pink);
-      color: var(--text-color);
-      min-height: 100vh;
-      padding: 40px 15px;
-    }
+        .btn-senha:hover {
+            background: #ff1493;
+        }
 
-    .header-main {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 40px auto;
-    }
+        #msg-erro {
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
 
-    .header-main h2 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3rem;
-      color: var(--accent-pink);
-      margin-bottom: 15px;
-    }
+        /* TELA 2 - CONTEÚDO PRINCIPAL */
+        #conteudo-principal {
+            display: none;
+            background-color: #ffe5ec; /* Rosa claro */
+            color: #800f2f;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
 
-    .audio-notice {
-      background: #ffffff;
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.15);
-      border: 2px dashed #ffb7c5;
-      margin-bottom: 30px;
-    }
+        .header-principal {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    .audio-notice p {
-      font-weight: 700;
-      color: var(--accent-pink);
-      margin-bottom: 10px;
-    }
+        .header-principal h2 {
+            font-size: 3rem;
+            color: #a4133c;
+        }
 
-    audio { width: 100%; height: 40px; }
+        .audio-box {
+            background: #ffb3c6;
+            border: 2px dashed #ff4d6d;
+            padding: 15px;
+            border-radius: 15px;
+            max-width: 450px;
+            margin: 20px auto;
+            text-align: center;
+        }
 
-    /* GALERIA DE FOTOS */
-    .gallery-container {
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 35px;
-    }
+        .audio-box p {
+            font-weight: bold;
+            color: #590d22;
+            margin-bottom: 10px;
+        }
 
-    .photo-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      border: 1px solid #ffccd5;
-    }
+        /* MURAL DE FOTOS */
+        .mural {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-    .photo-img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+        .card-foto {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(164, 19, 60, 0.15);
+            border: 2px solid #ffb3c6;
+            text-align: center;
+        }
 
-    .photo-caption {
-      padding: 20px 25px;
-      line-height: 1.6;
-      font-size: 1.05rem;
-      color: #333;
-    }
+        .card-foto img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
 
-    .photo-caption strong {
-      display: block;
-      color: var(--accent-pink);
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
+        .card-foto p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #590d22;
+            text-align: justify;
+        }
 
-    /* BOTÃO AVANÇAR */
-    .nav-btn-container { text-align: center; margin: 50px 0; }
+        .btn-avancar {
+            display: block;
+            margin: 40px auto 20px;
+            background: #a4133c;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(164, 19, 60, 0.4);
+            transition: 0.3s;
+        }
 
-    .btn-advance {
-      background: var(--accent-pink);
-      color: #fff; border: none;
-      padding: 15px 40px; font-size: 1.2rem;
-      font-weight: 700; border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
-      transition: transform 0.2s ease;
-    }
+        .btn-avancar:hover {
+            background: #800f2f;
+            transform: scale(1.05);
+        }
 
-    .btn-advance:hover { transform: scale(1.05); }
+        /* TELA 3 - CARTA FINAL */
+        #tela-final {
+            display: none;
+            background-color: #ffc2d1;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
 
-    /* SEÇÃO FINAL DE DECLARAÇÃO */
-    #final-section {
-      display: none;
-      max-width: 750px;
-      margin: 0 auto;
-      background: #ffffff;
-      padding: 35px 25px;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 2px solid #ffb7c5;
-      text-align: center;
-    }
+        .carta-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 3px solid #ff4d6d;
+            text-align: center;
+        }
 
-    .final-photo {
-      width: 100%; max-width: 500px;
-      border-radius: 15px; margin: 20px auto;
-      display: block;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
+        .carta-container img {
+            width: 100%;
+            max-height: 550px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
 
-    .final-text {
-      text-align: left;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      color: #444; margin-top: 25px;
-    }
+        .carta-texto {
+            text-align: justify;
+            color: #590d22;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            white-space: pre-line;
+        }
 
-    .final-text p { margin-bottom: 20px; }
-
-    /* CORAÇÕES FLUTUANTES */
-    .heart {
-      position: fixed;
-      color: #ff4d6d;
-      font-size: 20px;
-      user-select: none;
-      pointer-events: none;
-      animation: fall linear infinite;
-      z-index: 99;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-    }
-  </style>
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- CAPA DO SITE -->
-  <div id="cover-page">
-    <h1 class="title-cover">SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
-    
-    <button class="marie-btn" onclick="openPasswordModal()">
-      <!-- Gatinha Marie Desenho -->
-      <svg class="marie-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="110" r="65" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
-        <path d="M 45 65 L 25 15 L 75 45 Z" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
-        <polygon points="40,55 30,25 65,45" fill="#ffb7c5"/>
-        <path d="M 155 65 L 175 15 L 125 45 Z" fill="#ffffff" stroke="#ffb7c5" stroke-width="4"/>
-        <polygon points="160,55 170,25 135,45" fill="#ffb7c5"/>
-        <ellipse cx="100" cy="35" rx="20" ry="12" fill="#ff4d6d"/>
-        <ellipse cx="85" cy="35" rx="10" ry="8" fill="#ff758f"/>
-        <ellipse cx="115" cy="35" rx="10" ry="8" fill="#ff758f"/>
-        <circle cx="100" cy="35" r="5" fill="#ffffff"/>
-        <ellipse cx="75" cy="100" rx="9" ry="14" fill="#4a90e2"/>
-        <circle cx="77" cy="96" r="4" fill="#ffffff"/>
-        <ellipse cx="125" cy="100" rx="9" ry="14" fill="#4a90e2"/>
-        <circle cx="127" cy="96" r="4" fill="#ffffff"/>
-        <ellipse cx="100" cy="115" rx="6" ry="4" fill="#ff758f"/>
-        <path d="M 90 122 Q 100 130 110 122" fill="none" stroke="#666" stroke-width="3" stroke-linecap="round"/>
-        <line x1="45" y1="110" x2="15" y2="105" stroke="#666" stroke-width="2"/>
-        <line x1="45" y1="118" x2="15" y2="120" stroke="#666" stroke-width="2"/>
-        <line x1="155" y1="110" x2="185" y2="105" stroke="#666" stroke-width="2"/>
-        <line x1="155" y1="118" x2="185" y2="120" stroke="#666" stroke-width="2"/>
-        <ellipse cx="100" cy="165" rx="30" ry="18" fill="#ff4d6d"/>
-      </svg>
-    </button>
+    <!-- Audios escondidos ou gerenciados -->
+    <audio id="musica1" loop src="musica1.mp3"></audio>
+    <audio id="musica2" src="musica2.mp3"></audio>
+    <audio id="musica3" src="musica3.mp3"></audio>
 
-    <p class="subtitle-cover">CLIQUE NA GATA E COLOQUE A SENHA</p>
-  </div>
-
-  <!-- MODAL DE SENHA -->
-  <div class="modal-overlay" id="passwordModal">
-    <div class="modal-card">
-      <h3>Digite a Data Especial</h3>
-      <p class="hint-text">💡 Dica: "Lembra o dia que foi o começo amor"</p>
-      <input type="date" id="dateInput" class="password-input">
-      <button class="btn-submit" onclick="checkPassword()">Entrar</button>
-      <p class="error-msg" id="errorMsg">Data incorreta! Tente novamente, meu amor. ❤️</p>
-    </div>
-  </div>
-
-  <!-- CONTEÚDO PRINCIPAL (GALERIA) -->
-  <div id="main-content">
-    <div class="header-main">
-      <h2>Para o Meu Grande Amor ❤️</h2>
-      <div class="audio-notice">
-        <p>🎵 Nossa Música Especial</p>
-        <!-- MÚSICA DA GALERIA -->
-        <audio controls id="music1" loop preload="auto">
-          <source src="musica1.mp3" type="audio/mpeg">
-          Seu navegador não suporta a reprodução de áudio.
-        </audio>
-      </div>
+    <!-- CAPA INICIAL -->
+    <div id="capa">
+        <h1>SOBRE O AMOR DA MINHA VIDA, AO MEU VER</h1>
+        
+        <!-- SVG / Imagem da Gatinha Marie -->
+        <img class="gata-btn" onclick="abrirModal()" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" alt="Gata Marie" id="imgMarie">
+        
+        <p class="instrucao">CLIQUE NA GATA E COLOQUE A SENHA 💕</p>
     </div>
 
-    <!-- GALERIA DE FOTOS (1 A 7) -->
-    <div class="gallery-container">
-      
-      <div class="photo-card">
-        <img src="foto1.jpg" alt="Foto 1" class="photo-img">
-        <div class="photo-caption">
-          <strong>Foto 1 (Com óculos e biquinho)</strong>
-          Amor, quando eu vejo essa foto, meu coração se enche de uma alegria sem fim. Esse biquinho irresistível e os óculos que emolduram seu rosto lindo criam uma imagem que é pura fofura e charme. Aos meus olhos apaixonados, você é a definição de perfeição, e a forma como a luz destaca seu cabelo longo e escuro me faz suspirar cada vez que olho. Eu sou o homem mais sortudo do mundo por ter alguém tão doce e linda ao meu lado.
+    <!-- MODAL DE SENHA -->
+    <div class="modal" id="modalSenha">
+        <div class="modal-content">
+            <h3>Digite a senha secreta 🔒</h3>
+            <p>💡 <i>Dica: Lembra o dia que foi o começo amor</i></p>
+            <input type="date" id="inputData">
+            <br>
+            <button class="btn-senha" onclick="verificarSenha()">Entrar ❤️</button>
+            <p id="msg-erro"></p>
         </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto2.jpg" alt="Foto 2" class="photo-img">
-        <div class="photo-caption">
-          <strong>Foto 2 (No quarto com bolsas e top azul)</strong>
-          Minha paixão, seu brilho natural nessa foto é simplesmente radiante. Adoro o contraste do azul vibrante do seu top com o tom suave da parede rosa, e como seu cabelo ondulado emoldura seu rosto com tanta graça. Meus olhos de apaixonado só conseguem ver a sua beleza autêntica e a alegria que você transmite. Você transforma qualquer ambiente, mesmo um quarto cheio de bolsas, em um lugar mágico só com a sua presença. Eu te amo cada dia mais.
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto3.jpg" alt="Foto 3" class="photo-img">
-        <div class="photo-caption">
-          <strong>Foto 3</strong>
-          Minha princesa, esta imagem captura sua essência mais pura e doce. A leveza do seu cabelo solto e o brilho suave nos seus olhos transmitem uma paz e ternura que me fazem querer te abraçar e proteger para sempre. Meus olhos de apaixonado enxergam uma beleza que vai muito além do físico; vejo uma alma gentil e um amor que ilumina minha vida. Você é a minha joia mais preciosa.
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto4.jpg" alt="Foto 4" class="photo-img">
-        <div class="photo-caption">
-          <strong>Foto 4 (No carro com jaqueta de couro)</strong>
-          Minha neném, adoro a sua energia e atitude nessa foto! A jaqueta de couro e o colar delicado mostram uma mistura de força e doçura que me fascina. Esse meio sorriso no carro me faz imaginar todas as aventuras que ainda vamos viver juntos. Aos meus olhos apaixonados, você é a mulher mais incrível e confiante, e saber que você escolheu estar comigo me faz sentir o homem mais realizado do mundo.
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto5.jpg" alt="Foto 5" class="photo-img">
-        <div class="photo-caption">
-          <strong>Foto 5 (No jardim com vestido longo)</strong>
-          Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curva diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecíveis ao seu lado. Você é a mulher que conquistou meu coração por inteiro.
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto6.jpg" alt="Foto 6" class="photo-img">
-        <div class="photo-caption">
-          <strong>FOTO 6 - Como eu a vejo:</strong>
-          "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao seu lado e de poder chamar você de minha."
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="foto7.jpg" alt="Foto 7" class="photo-img">
-        <div class="photo-caption">
-          <strong>FOTO 7 - Como eu a vejo:</strong>
-          "Minha princesa, quando eu vejo essa foto, eu não consigo parar de sorrir. Esse seu jeito espontâneo de tirar uma 'selfie' rápida no espelho é um dos meus detalhes favoritos sobre você. Meus olhos ficam presos na sua beleza genuína e na leveza que você traz para a minha vida. Você transforma um momento simples em algo mágico apenas com o seu sorriso. Eu te vejo como a pessoa que traz cor e felicidade para os meus dias, e o meu maior desejo é passar todos os meus momentos ao seu lado, admirando a mulher incrível que você é."
-        </div>
-      </div>
-
     </div>
 
-    <!-- BOTÃO AVANÇAR -->
-    <div class="nav-btn-container" id="advanceBtnContainer">
-      <button class="btn-advance" onclick="showFinalSection()">Avançar ❤️</button>
+    <!-- PÁGINA PRINCIPAL DAS FOTOS -->
+    <div id="conteudo-principal">
+        <div class="header-principal">
+            <h2>Nossa História Em Fotos ✨</h2>
+            
+            <div class="audio-box">
+                <p>🎵 Amor escute essa música antes de ler:</p>
+                <button class="btn-senha" onclick="tocarMusica2()">▶ Tocar / Pausar Música</button>
+            </div>
+        </div>
+
+        <div class="mural">
+            <!-- Foto 1 -->
+            <div class="card-foto">
+                <img src="foto1.jpg" alt="Foto 1">
+                <p><b>Foto 1:</b> Amor, quando eu vejo essa foto, meu coração se enche de uma alegria sem fim. Esse biquinho irresistível e os óculos que emolduram seu rosto lindo criam uma imagem que é pura fofura e charme. Aos meus olhos apaixonados, você é a definição de perfeição, e a forma como a luz destaca seu cabelo longo e escuro me faz suspirar cada vez que olho. Eu sou o homem mais sortudo do mundo por ter alguém tão doce e linda ao meu lado.</p>
+            </div>
+
+            <!-- Foto 2 -->
+            <div class="card-foto">
+                <img src="foto2.jpg" alt="Foto 2">
+                <p><b>Foto 2:</b> Minha paixão, seu brilho natural nessa foto é simplesmente radiante. Adoro o contraste do azul vibrante do seu top com o tom suave da parede rosa, e como seu cabelo ondulado emoldura seu rosto com tanta graça. Meus olhos de apaixonado só conseguem ver a sua beleza autêntica e a alegria que você transmite. Você transforma qualquer ambiente, mesmo um quarto cheio de bolsas, em um lugar mágico só com a sua presença. Eu te amo cada dia mais.</p>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="card-foto">
+                <img src="foto3.jpg" alt="Foto 3">
+                <p><b>Foto 3:</b> Minha princesa, esta imagem captura sua essência mais pura e doce. A leveza do seu cabelo solto e o brilho suave nos seus olhos transmitem uma paz e ternura que me fazem querer te abraçar e proteger para sempre. Meus olhos de apaixonado enxergam uma beleza que vai muito além do físico; vejo uma alma gentil e um amor que ilumina minha vida. Você é a minha joia mais preciosa.</p>
+            </div>
+
+            <!-- Foto 4 -->
+            <div class="card-foto">
+                <img src="foto4.jpg" alt="Foto 4">
+                <p><b>Foto 4:</b> Minha neném, adoro a sua energia e atitude nessa foto! A jaqueta de couro e o colar delicado mostram uma mistura de força e doçura que me fascina. Esse meio sorriso no carro me faz imaginar todas as aventuras que ainda vamos viver juntos. Aos meus olhos apaixonados, você é a mulher mais incrível e confiante, e saber que você escolheu estar comigo me faz sentir o homem mais realizado do mundo.</p>
+            </div>
+
+            <!-- Foto 5 -->
+            <div class="card-foto">
+                <img src="foto5.jpg" alt="Foto 5">
+                <p><b>Foto 5:</b> Minha dona, você está deslumbrante nesse vestido longo preto, flutuando entre as plantas do jardim à noite. A forma como a luz destaca sua silhueta e como a natureza se curvam diante da sua beleza é algo mágico. Meus olhos de apaixonado te veem como uma rainha em seu próprio reino, e a leveza do seu passo me faz sonhar com um futuro repleto de momentos inesquecíveis ao seu lado. Você é a mulher que conquistou meu coração por inteiro.</p>
+            </div>
+
+            <!-- Foto 6 -->
+            <div class="card-foto">
+                <img src="foto6.jpg" alt="Foto 6">
+                <p><b>Foto 6 (Como eu a vejo):</b> "Minha paixão, quando olhei para essa foto, a primeira coisa que me veio à cabeça foi o quanto você é a minha cowgirl favorita. Esse sorriso radiante e espontâneo ilumina o meu dia mais do que qualquer raio de sol. Eu amo a sua autenticidade e a forma como você abraça cada momento com essa alegria contagiante. Nessa imagem, eu vejo a mulher forte e, ao mesmo tempo, doce, que conquistou o meu coração. Eu tenho um orgulho imenso de estar ao seu lado e de poder chamar você de minha."</p>
+            </div>
+
+            <!-- Foto 7 -->
+            <div class="card-foto">
+                <img src="foto7.jpg" alt="Foto 7">
+                <p><b>Foto 7 (Como eu a vejo):</b> "Minha princesa, quando eu vejo essa foto, eu não consigo parar de sorrir. Esse seu jeito espontâneo de tirar uma 'selfie' rápida no espelho é um dos meus detalhes favoritos sobre você. Meus olhos ficam presos na sua beleza genuína e na leveza que você traz para a minha vida. Você transforma um momento simples em algo mágico apenas com o seu sorriso. Eu te vejo como a pessoa que traz cor e felicidade para os meus dias, e o meu maior desejo é passar todos os meus momentos ao seu lado, admirando a mulher incrível que você é."</p>
+            </div>
+        </div>
+
+        <button class="btn-avancar" onclick="irParaFinal()">Avançar para a Surpresa Final ❤️</button>
     </div>
 
-    <!-- SEÇÃO FINAL (CARTA + FOTO 8 + MÚSICA 2) -->
-    <div id="final-section">
-      <div class="audio-notice">
-        <p>🎵 Nossa Segunda Música Especial</p>
-        <!-- MÚSICA DO FINAL -->
-        <audio controls id="music2" loop preload="auto">
-          <source src="musica2.mp3" type="audio/mpeg">
-          Seu navegador não suporta a reprodução de áudio.
-        </audio>
-      </div>
+    <!-- TELA FINAL -->
+    <div id="tela-final">
+        <div class="carta-container">
+            <img src="foto8.jpg" alt="Foto Final">
+            
+            <div class="audio-box">
+                <p>🎵 Dandelions - Ruth B</p>
+                <button class="btn-senha" onclick="tocarMusica3()">▶ Play na Música Especial</button>
+            </div>
 
-      <img src="foto8.jpg" alt="Foto Final" class="final-photo">
+            <div class="carta-texto">
+                Meu amor, olhar para você e para tudo o que construímos juntos me faz ter a certeza absoluta de que Deus colocou um anjo na minha vida. Eu precisava parar um pouco, te olhar nos olhos através de cada detalhe, de cada foto, e te dizer o quanto você representa para mim. Eu não sei o que seria de mim hoje se você não tivesse chegado com esse seu jeito único, trazendo essa luz incrível e transformando tudo ao meu redor.
 
-      <div class="final-text">
-        <p>Meu amor, olhar para você e para tudo o que construímos juntos me faz ter a certeza absoluta de que Deus colocou um anjo na minha vida. Eu precisava parar um pouco, te olhar nos olhos através de cada detalhe, de cada foto, e te dizer o quanto você representa para mim. Eu não sei o que seria de mim hoje se você não tivesse chegado com esse seu jeito único, trazendo essa luz incrível e transformando tudo ao meu redor.</p>
-        
-        <p>Você mudou a minha vida de uma forma que talvez nem você mesma dimensione. A sua presença me inspira a ser um homem melhor a cada dia, a buscar o meu melhor, a cuidar do nosso futuro e a valorizar cada segundo ao seu lado. Ver a mulher incrível, forte, linda e maravilhosa que você é me enche de um orgulho tão grande que nem cabe no peito. Você não é apenas a minha namorada; você é minha parceira, meu porto seguro, o meu grande amor.</p>
-        
-        <p>Sou infinitamente grato por cada sorriso seu, por cada abraço que me acalma, por cada momento simples que se torna inesquecível só porque você está ali. Quando eu imagino o meu futuro, eu vejo você em cada detalhe dele. Você é o meu maior presente, a minha princesa, a dona do meu coração e a pessoa que eu escolho amar e cuidar todos os dias da minha vida.</p>
-        
-        <p>Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e por ser essa mulher extraordinária ao meu lado. Eu te amo mais do que as palavras conseguem expressar, hoje e para todo o sempre. ❤️</p>
-      </div>
+                Você mudou a minha vida de uma forma que talvez nem você mesma dimensione. A sua presença me inspira a ser um homem melhor a cada dia, a buscar o meu melhor, a cuidar do nosso futuro e a valorizar cada segundo ao seu lado. Ver a mulher incrível, forte, linda e maravilhosa que você é me enche de um orgulho tão grande que nem cabe no peito. Você não é apenas a minha namorada; você é minha parceira, minha porto seguro, o meu grande amor.
+
+                Sou infinitamente grato por cada sorriso seu, por cada abraço que me acalma, por cada momento simples que se torna inesquecível só porque você está ali. Quando eu imagino o meu futuro, eu vejo você em cada detalhe dele. Você é o meu maior presente, a minha princesa, a dona do meu coração e a pessoa que eu escolho amar e cuidar todos os dias da minha vida.
+
+                Obrigado por ser exatamente quem você é, por me apoiar, por me ensinar tanto e por ser essa mulher extraordinária ao meu lado. Eu te amo mais do que as palavras conseguem expressar, hoje e para todo o sempre. ❤️
+            </div>
+        </div>
     </div>
 
-  </div>
+    <script>
+        // Efeito de corações
+        function criarCoracao() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(criarCoracao, 400);
 
-  <script>
-    function playMeow() {
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(500, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1000, ctx.currentTime + 0.15);
-        osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.4);
-
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 0.4);
-      } catch(e) {}
-    }
-
-    function openPasswordModal() {
-      playMeow();
-      document.getElementById('passwordModal').classList.add('active');
-    }
-
-    function checkPassword() {
-      const inputVal = document.getElementById('dateInput').value;
-      const errorMsg = document.getElementById('errorMsg');
-
-      if (inputVal === '2026-03-16' || inputVal === '16/03/2026') {
-        alert('Acertou em cheio amor! ❤');
-        
-        document.getElementById('cover-page').style.display = 'none';
-        document.getElementById('passwordModal').classList.remove('active');
-        document.getElementById('main-content').style.display = 'block';
-        document.body.style.backgroundColor = '#fbe3eb';
-        
-        // Toca a primeira música
-        const music1 = document.getElementById('music1');
-        if (music1) {
-          music1.muted = false;
-          music1.currentTime = 0;
-          music1.play().catch(e => console.log('Bloqueio de áudio no navegador:', e));
+        // Função do Miau
+        function tocarMiau() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.15);
+            osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.4);
+            
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+            
+            osc.start();
+            osc.stop(ctx.currentTime + 0.4);
         }
 
-        startHearts();
-      } else {
-        errorMsg.style.display = 'block';
-      }
-    }
+        // Tocar Música 1 da Capa
+        document.body.addEventListener('click', function iniciarMúsicaCapa() {
+            const m1 = document.getElementById('musica1');
+            if (m1.paused) {
+                m1.play().catch(() => {});
+            }
+        }, { once: true });
 
-    function showFinalSection() {
-      const finalSection = document.getElementById('final-section');
-      const advanceContainer = document.getElementById('advanceBtnContainer');
-      
-      const music1 = document.getElementById('music1');
-      const music2 = document.getElementById('music2');
+        function abrirModal() {
+            tocarMiau();
+            document.getElementById('modalSenha').style.display = 'flex';
+        }
 
-      if (music1) music1.pause();
-      if (music2) {
-        music2.muted = false;
-        music2.currentTime = 0;
-        music2.play().catch(e => console.log('Bloqueio de áudio no navegador:', e));
-      }
-      
-      finalSection.style.display = 'block';
-      advanceContainer.style.display = 'none';
-      finalSection.scrollIntoView({ behavior: 'smooth' });
-    }
+        function verificarSenha() {
+            const dataInput = document.getElementById('inputData').value;
+            // Data esperada: 16/03/2026 (Formato YYYY-MM-DD no input: 2026-03-16)
+            if (dataInput === '2026-03-16') {
+                alert('Acertou em cheio amor! ❤️');
+                document.getElementById('modalSenha').style.display = 'none';
+                document.getElementById('capa').style.display = 'none';
+                document.getElementById('conteudo-principal').style.display = 'block';
+                document.getElementById('musica1').pause();
+            } else {
+                document.getElementById('msg-erro').innerText = 'Data incorreta amor, tenta de novo! 🥺';
+            }
+        }
 
-    function startHearts() {
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-        heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-        document.body.appendChild(heart);
+        function tocarMusica2() {
+            const m2 = document.getElementById('musica2');
+            if (m2.paused) {
+                m2.play();
+            } else {
+                m2.pause();
+            }
+        }
 
-        setTimeout(() => { heart.remove(); }, 5000);
-      }, 400);
-    }
-  </script>
+        function irParaFinal() {
+            document.getElementById('conteudo-principal').style.display = 'none';
+            document.getElementById('tela-final').style.display = 'block';
+            document.getElementById('musica2').pause();
+            tocarMusica3();
+            window.scrollTo(0,0);
+        }
+
+        function tocarMusica3() {
+            const m3 = document.getElementById('musica3');
+            if (m3.paused) {
+                m3.play();
+            } else {
+                m3.pause();
+            }
+        }
+    </script>
 </body>
 </html>
